@@ -22,7 +22,7 @@ async function submitNewHabit(e) {
           number_of_rep: e.target.reps.value,
         })
     }
-    const r = await fetch(`https://track-it-habit-backend.herokuapp.com/habits`, options)
+    const r = await fetch(`https://trackit-habit-tracker.onrender.com/habits`, options)
     const data = await r.json()
     if (data.err){ throw Error(data.err); }
     location.href=`./dashboard.html`;

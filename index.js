@@ -13,7 +13,7 @@ async function requestLogin(e) {
                 password: e.target.password.value
             })
         }
-        const r = await fetch(`https://track-it-habit-backend.herokuapp.com/auth/login`, options)
+        const r = await fetch(`https://trackit-habit-tracker.onrender.com/auth/login`, options)
         const data = await r.json()
         if (data.err){ throw Error(data.err); }
         login(data);

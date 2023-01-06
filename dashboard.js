@@ -60,6 +60,9 @@ function appendNewHabit(habitData) {
     const habit = document.createElement("div");
     habit.classList.add("habit");
 
+    const habitDetails = document.createElement("div");
+    habitDetails.classList.add("habitDetails");
+
     const plus = document.createElement("div");
     plus.classList.add("plus")
     plus.setAttribute('id', id)
@@ -98,9 +101,6 @@ function appendNewHabit(habitData) {
       plus.classList.add('hide')
       document.getElementsByClassName('habitDetails').style.paddingRight = 0
     }
-
-    const habitDetails = document.createElement("div");
-    habitDetails.classList.add("habitDetails");
 
     const sameLine = document.createElement("div");
     sameLine.classList.add("sameLine");

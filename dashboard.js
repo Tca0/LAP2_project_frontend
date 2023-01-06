@@ -89,12 +89,14 @@ function appendNewHabit(habitData) {
       });
       habit.classList.remove('completed')
       plus.classList.remove('completed')
+      document.getElementsByClassName('habitDetails').style.paddingRight = '20px';
     } else {
       plus.classList.remove('easyPlus')
       plus.classList.remove('medPlus')
       plus.classList.remove('hardPlus')
       habit.classList.add('completed')
       plus.classList.add('hide')
+      document.getElementsByClassName('habitDetails').style.paddingRight = 0
     }
 
     const habitDetails = document.createElement("div");
@@ -158,8 +160,8 @@ async function updateExp(id) {
 // need to call function to update user level, exp
         fetchUserData()
         document.getElementsByClassName('streak').textContent = `${data.frequency.toUpperCase()} ${data.streak} 🔥`;
-        // const plusButton = document.getElementById(id);
-        // plusButton.replaceWith(plusButton.cloneNode(true));
+        const plusButton = document.getElementById(id);
+        plusButton.replaceWith(plusButton.cloneNode(true));
         location.reload();
       }
       if (data.err){ throw Error(data.err); }

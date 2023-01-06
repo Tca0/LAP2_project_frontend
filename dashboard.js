@@ -158,9 +158,8 @@ async function updateExp(id) {
 // need to call function to update user level, exp
         fetchUserData()
         document.getElementsByClassName('streak').textContent = `${data.frequency.toUpperCase()} ${data.streak} 🔥`;
-        const plusButton = document.getElementById(id);
-        plusButton.replaceWith(plusButton.cloneNode(true));
-        document.getElementsByClassName("habitDetails").style.paddingRight = 0;
+        // const plusButton = document.getElementById(id);
+        // plusButton.replaceWith(plusButton.cloneNode(true));
         location.reload();
       }
       if (data.err){ throw Error(data.err); }

@@ -19,8 +19,7 @@ body:not(#dashboard) {
 }
 
 #dashboard {
-    background-color: var(--blue);
-    /* background-color: var(--green); */
+    background-color: var(--green);
     font-family: 'Poppins', sans-serif;
 }
 

@@ -92,14 +92,13 @@ function appendNewHabit(habitData) {
       });
       habit.classList.remove('completed')
       plus.classList.remove('completed')
-      habitDetails.style.paddingRight = '20px'
     } else {
       plus.classList.remove('easyPlus')
       plus.classList.remove('medPlus')
       plus.classList.remove('hardPlus')
       habit.classList.add('completed')
       plus.classList.add('hide')
-      habitDetails.style.paddingRight = '0'
+      habitDetails.style.transform = 'translateX(20px)'
     }
 
     const sameLine = document.createElement("div");

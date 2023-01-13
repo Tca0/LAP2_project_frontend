@@ -2,7 +2,6 @@ const registerForm = document.getElementById('registerForm');
 registerForm.addEventListener('submit', requestRegistration);
 
 async function requestRegistration(e) {
-    console.log(e.target)
     e.preventDefault();
     try {
         const options = {

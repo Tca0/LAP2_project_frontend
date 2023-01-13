@@ -7,7 +7,6 @@ async function fetchUserData() {
   try {
     const rawData = await fetch(`https://trackit-habit-tracker.onrender.com/users/${userID}`);
     const userData = await rawData.json();
-    console.log(userData)
     const userLevel = userData.level;
     const userExp = userData.exp;
     level.textContent = `Level ${userLevel}`;
@@ -26,11 +25,9 @@ const noHabits = document.getElementById("noHabits");
 
 async function fetchHabitData() {
   try {
-    // const rawData = await fetch(`http://localhost:3000/habits/${id}`);
     const options = {
       method: 'GET',
       headers: { authorization:`Bearer ${localStorage.getItem('token')}` },
-      // body: JSON.stringify(Object.fromEntries(new FormData(e.target)))
     }
     const rawData = await fetch(`https://trackit-habit-tracker.onrender.com/habits`, options)
     console.log(rawData);
@@ -64,12 +61,10 @@ function appendNewHabit(habitData) {
     habitDetails.classList.add("habitDetails");
 
     const habitName = document.createElement("h3");
-    // habitName.textContent = `${name} (${current_rep}/${number_of_rep})`;
 
     const plus = document.createElement("div");
     plus.classList.add("plus")
     plus.setAttribute('id', id)
-    console.log(difficulty);
     switch(difficulty){
       case 'easy':
         plus.classList.add('easyPlus')
@@ -92,7 +87,6 @@ function appendNewHabit(habitData) {
       plus.addEventListener("click", () => { 
         localStorage.setItem("id", id)
         updateExp(localStorage.getItem('id'));
-        // location.reload();
       });
       habit.classList.remove('completed')
       plus.classList.remove('completed')
@@ -126,9 +120,7 @@ function appendNewHabit(habitData) {
   });
     const displayedStreak = document.createElement("p");
     displayedStreak.classList.add('streak');
-    // const span = document.createElement('span')
     displayedStreak.textContent = `${frequency.toUpperCase()} ${streak} 🔥`;
-    // span.appendChild(displayedStreak)
 
   //appending
     allHabits.appendChild(habit);
@@ -147,24 +139,19 @@ logOut.addEventListener('click', () => {
 })
 
 async function updateExp(id) {
-  console.log('***********')
-  console.log('called event listener')
   try {
       const options = {
           method: 'PATCH',
           headers: {  authorization:`Bearer ${localStorage.getItem('token')}` },
       }
       const r = await fetch(`https://trackit-habit-tracker.onrender.com/habits/${id}`, options)
-      console.log(r)
       const data = await r.json()
-      console.log(data)
       if(data.completed){
 // need to call function to update user level, exp
         fetchUserData()
         document.getElementsByClassName('streak').textContent = `${data.frequency.toUpperCase()} ${data.streak} 🔥`;
         const plusButton = document.getElementById(id);
         plusButton.replaceWith(plusButton.cloneNode(true));
-        // location.reload();
       }
       location.reload();
       if (data.err){ throw Error(data.err); }

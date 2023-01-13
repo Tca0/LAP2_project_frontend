@@ -4,12 +4,6 @@ addHabitForm.addEventListener("submit", submitNewHabit);
 
 async function submitNewHabit(e) {
   e.preventDefault();
-  console.log('====================================');
-  console.log(e.target.name.value);
-  console.log(e.target.difficulty.value);
-  console.log(e.target.frequency.value);
-  console.log(e.target.reps.value);
-  console.log('====================================');
   try {
     const options = {
         method: 'POST',
@@ -30,5 +24,4 @@ async function submitNewHabit(e) {
     console.warn(`Error: ${err}`);
 }
 
-  // location.href = `./dashboard`; //Should connect to the user dashboard
 }

@@ -89,6 +89,7 @@ function appendNewHabit(habitData) {
       plus.addEventListener("click", () => { 
         localStorage.setItem("id", id)
         updateExp(localStorage.getItem('id'));
+        location.reload();
       });
       habit.classList.remove('completed')
       plus.classList.remove('completed')

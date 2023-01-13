@@ -92,7 +92,7 @@ function appendNewHabit(habitData) {
       plus.addEventListener("click", () => { 
         localStorage.setItem("id", id)
         updateExp(localStorage.getItem('id'));
-        location.reload();
+        // location.reload();
       });
       habit.classList.remove('completed')
       plus.classList.remove('completed')
@@ -164,8 +164,9 @@ async function updateExp(id) {
         document.getElementsByClassName('streak').textContent = `${data.frequency.toUpperCase()} ${data.streak} 🔥`;
         const plusButton = document.getElementById(id);
         plusButton.replaceWith(plusButton.cloneNode(true));
-        location.reload();
+        // location.reload();
       }
+      location.reload();
       if (data.err){ throw Error(data.err); }
   } catch (err) {
       console.warn(`Error: ${err}`);

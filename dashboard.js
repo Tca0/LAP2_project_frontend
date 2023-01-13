@@ -63,6 +63,9 @@ function appendNewHabit(habitData) {
     const habitDetails = document.createElement("div");
     habitDetails.classList.add("habitDetails");
 
+    const habitName = document.createElement("h3");
+    habitName.textContent = `${name} (${current_rep}/${number_of_rep})`;
+
     const plus = document.createElement("div");
     plus.classList.add("plus")
     plus.setAttribute('id', id)
@@ -105,9 +108,6 @@ function appendNewHabit(habitData) {
 
     const sameLine = document.createElement("div");
     sameLine.classList.add("sameLine");
-
-    const habitName = document.createElement("h3");
-    habitName.textContent = `${name} (${current_rep}/${number_of_rep})`;
 
     const pencil = document.createElement("img");
     pencil.src = "./assets/pencil.png";

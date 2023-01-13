@@ -100,6 +100,7 @@ function appendNewHabit(habitData) {
       habit.classList.add('completed')
       plus.classList.add('hide')
       habitDetails.style.transform = 'translateX(20px)'
+      habitName.classList.add('hide')
     }
 
     const sameLine = document.createElement("div");

@@ -64,7 +64,7 @@ function appendNewHabit(habitData) {
     habitDetails.classList.add("habitDetails");
 
     const habitName = document.createElement("h3");
-    habitName.textContent = `${name} (${current_rep}/${number_of_rep})`;
+    // habitName.textContent = `${name} (${current_rep}/${number_of_rep})`;
 
     const plus = document.createElement("div");
     plus.classList.add("plus")
@@ -96,6 +96,7 @@ function appendNewHabit(habitData) {
       });
       habit.classList.remove('completed')
       plus.classList.remove('completed')
+      habitName.textContent = `${name} (${current_rep}/${number_of_rep})`;
     } else {
       plus.classList.remove('easyPlus')
       plus.classList.remove('medPlus')
@@ -103,7 +104,7 @@ function appendNewHabit(habitData) {
       habit.classList.add('completed')
       plus.classList.add('hide')
       habitDetails.style.transform = 'translateX(20px)'
-      habitName.classList.add('hide')
+      habitName.textContent = `${name} (x ${number_of_rep})`;
     }
 
     const sameLine = document.createElement("div");

@@ -34,3 +34,7 @@ We used HTML to structure the application and CSS to style it.
 ### JavaScript
 
 JavaScript was used to fetch data from the API and deliver the app's functionality.
+
+## Links
+* Back End - https://github.com/kroles1/LAP2_project_backend
+* Front End - https://github.com/kroles1/LAP2_project_frontend

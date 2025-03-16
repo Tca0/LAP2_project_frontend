@@ -7,7 +7,6 @@ async function requestLogin(e) {
         const options = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            // body: JSON.stringify(Object.fromEntries(new FormData(e.target)))
             body: JSON.stringify({
                 email: e.target.email.value,
                 password: e.target.password.value
@@ -25,8 +24,6 @@ async function requestLogin(e) {
 function login(data){
     const payload = jwt_decode(data.token);
     localStorage.setItem('token', data.token)
-    // localStorage.setItem('username', payload.username)
-    // localStorage.setItem('email', payload.email)
     localStorage.setItem('userId', payload.id)
     location.href = `./dashboard.html`;
 }

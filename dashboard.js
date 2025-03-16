@@ -7,7 +7,6 @@ async function fetchUserData() {
   try {
     const rawData = await fetch(`https://trackit-habit-tracker.onrender.com/users/${userID}`);
     const userData = await rawData.json();
-    console.log(userData)
     const userLevel = userData.level;
     const userExp = userData.exp;
     level.textContent = `Level ${userLevel}`;
@@ -26,11 +25,9 @@ const noHabits = document.getElementById("noHabits");
 
 async function fetchHabitData() {
   try {
-    // const rawData = await fetch(`http://localhost:3000/habits/${id}`);
     const options = {
       method: 'GET',
       headers: { authorization:`Bearer ${localStorage.getItem('token')}` },
-      // body: JSON.stringify(Object.fromEntries(new FormData(e.target)))
     }
     const rawData = await fetch(`https://trackit-habit-tracker.onrender.com/habits`, options)
     console.log(rawData);
@@ -56,14 +53,18 @@ async function fetchHabitData() {
 fetchHabitData();
 
 function appendNewHabit(habitData) {
-    const { id, name, difficulty, frequency, streak, number_of_rep, completed } = habitData;
+    const { id, name, difficulty, frequency, streak, number_of_rep, current_rep, completed } = habitData;
     const habit = document.createElement("div");
     habit.classList.add("habit");
+
+    const habitDetails = document.createElement("div");
+    habitDetails.classList.add("habitDetails");
+
+    const habitName = document.createElement("h3");
 
     const plus = document.createElement("div");
     plus.classList.add("plus")
     plus.setAttribute('id', id)
-    console.log(difficulty);
     switch(difficulty){
       case 'easy':
         plus.classList.add('easyPlus')
@@ -89,22 +90,19 @@ function appendNewHabit(habitData) {
       });
       habit.classList.remove('completed')
       plus.classList.remove('completed')
+      habitName.textContent = `${name} (${current_rep}/${number_of_rep})`;
     } else {
       plus.classList.remove('easyPlus')
       plus.classList.remove('medPlus')
       plus.classList.remove('hardPlus')
       habit.classList.add('completed')
       plus.classList.add('hide')
+      habitDetails.style.transform = 'translateX(20px)'
+      habitName.textContent = `${name} (x ${number_of_rep})`;
     }
-
-    const habitDetails = document.createElement("div");
-    habitDetails.classList.add("habitDetails");
 
     const sameLine = document.createElement("div");
     sameLine.classList.add("sameLine");
-
-    const habitName = document.createElement("h3");
-    habitName.textContent = `${name} (x ${number_of_rep})`;
 
     const pencil = document.createElement("img");
     pencil.src = "./assets/pencil.png";
@@ -122,9 +120,7 @@ function appendNewHabit(habitData) {
   });
     const displayedStreak = document.createElement("p");
     displayedStreak.classList.add('streak');
-    // const span = document.createElement('span')
     displayedStreak.textContent = `${frequency.toUpperCase()} ${streak} 🔥`;
-    // span.appendChild(displayedStreak)
 
   //appending
     allHabits.appendChild(habit);
@@ -143,25 +139,21 @@ logOut.addEventListener('click', () => {
 })
 
 async function updateExp(id) {
-  console.log('***********')
-  console.log('called event listener')
   try {
       const options = {
           method: 'PATCH',
           headers: {  authorization:`Bearer ${localStorage.getItem('token')}` },
       }
       const r = await fetch(`https://trackit-habit-tracker.onrender.com/habits/${id}`, options)
-      console.log(r)
       const data = await r.json()
-      console.log(data)
       if(data.completed){
 // need to call function to update user level, exp
         fetchUserData()
         document.getElementsByClassName('streak').textContent = `${data.frequency.toUpperCase()} ${data.streak} 🔥`;
         const plusButton = document.getElementById(id);
         plusButton.replaceWith(plusButton.cloneNode(true));
-        location.reload()
       }
+      location.reload();
       if (data.err){ throw Error(data.err); }
   } catch (err) {
       console.warn(`Error: ${err}`);

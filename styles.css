@@ -19,8 +19,7 @@ body:not(#dashboard) {
 }
 
 #dashboard {
-    background-color: var(--blue);
-    /* background-color: var(--green); */
+    background-color: var(--green);
     font-family: 'Poppins', sans-serif;
 }
 
@@ -32,6 +31,14 @@ body:not(#dashboard) {
     border-radius: 20px;
     padding-left: 20px;
     box-shadow: 10px 10px;
+}
+
+#logo {
+    width: 10%;
+}
+
+#logo:hover {
+    color: white;
 }
 
 #expBar {
@@ -339,13 +346,9 @@ textarea {
     position: absolute;
     top: 20px;
     right: 10px;
-    box-shadow: 5px 5px;
 }
 
 #out:hover {
-    /* background-color: white;
-    color: var(--lav); */
-    box-shadow: none;
     color: white;
 }
 
@@ -394,7 +397,6 @@ button.add {
     position: fixed;
     bottom: 25px;
     right: 25px;
-    box-shadow: 2px 2px;
 }
 
 button.add:hover {
